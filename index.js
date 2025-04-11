@@ -1,30 +1,30 @@
-import express from "express"; /* se declara la variable para poder trabajar con express */
-import dotenv from"dotenv";
-import mongoose from "mongoose";
+import express from "express"; // Importa la librería Express para crear y gestionar el servidor y las rutas
+import dotenv from"dotenv"; // Importa la librería dotenv para cargar variables de entorno desde un archivo .env
+import mongoose from "mongoose"; // Importa la librería Mongoose para interactuar con la base de datos MongoDB
 
-/*  DE AQUIPARA */
+// Sección de rutas de la API  en esta linea se importan las rutas definidas en el archivo con ese nombre/ruta
 import pokemonRoutes from "./routes/pokemon.routes.js"
 
-dotenv.config();
-const app=express(); /* Se crea una instancia del express */
-const PORT =(process.env.PORT|| 3000);
+dotenv.config(); // Carga las variables de entorno desde el archivo .env
+const app=express(); // Crea una instancia de la aplicación Express
+const PORT =(process.env.PORT|| 3000); // Define el puerto del servidor, utilizando la variable de entorno PORT o 3000 como valor por defecto
 
-app.set("port",PORT) 
-app.use(express.json())
-app.use("/api/pokemon",pokemonRoutes);
+app.set("port",PORT); // Establece el puerto que la aplicación Express utilizará
+app.use(express.json()); // Habilita el middleware para analizar cuerpos de solicitud JSON
+app.use("/api/pokemon",pokemonRoutes); // Monta las rutas relacionadas con Pokémon bajo el prefijo "/api/pokemon"
 
+// Ruta de ejemplo para la raíz del servidor
 app.get("/",(req,res)=> {
-    console.log("hola entrenador");/*Respuesta enviada a consola  */
-    res.send('Hola entrenador1'); /* Respuesta envia da al postman (Usuario) */
-    
+    console.log("hola entrenador"); // Imprime un mensaje en la consola del servidor
+    res.send('Hola entrenador1'); // Envía la respuesta 'Hola entrenador1' al cliente que accede a la raíz
 });
-mongoose.connect(process.env.MONGO_URI)
-.then(()=>console.log("CONECTADO A LA DB"))
-.catch((Error)=> console.error(Error));
 
+// Conexión a la base de datos MongoDB
+mongoose.connect(process.env.MONGO_URI) // Intenta conectar a la base de datos MongoDB utilizando la URI definida en las variables de entorno
+.then(()=>console.log("CONECTADO A LA DB")) // Se ejecuta si la conexión a la base de datos es exitosa
+.catch((Error)=> console.error("ERROR AL CONECTAR A LA DB:", Error)); // Se ejecuta si ocurre un error durante la conexión a la base de datos
 
-
-app.listen(PORT,()=>{
-    console.log(`listen in port ${PORT}`);
-    
-})
+// Inicio del servidor Express
+app.listen(PORT,()=>{ // Inicia el servidor y lo hace escuchar en el puerto especificado
+    console.log(`Servidor escuchando en el puerto ${PORT}`);
+});
