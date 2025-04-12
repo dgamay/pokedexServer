@@ -4,22 +4,18 @@ import pokemonControllers from "../conttroller/pokemon.controller.js";
 import pokemonStatusController from "../conttroller/pokemonStatus.controller.js";
 const router =express.Router()
 
-router.get("/hello/",pokemonControllers.hiTrainer); 
+router.get("/hello/",pokemonControllers.hiTrainer); /* OOK */
 
-router.post("/:id",pokemonControllers.crear);
+// router.post("/",pokemonControllers.crear);
 
 router.get("/",pokemonControllers.getPokemon);
 
 router.get("/:pokemon_id",pokemonControllers.getPokemonByIdPokemon);
 
-router.put("//:id",pokemonControllers.actualizar);
-
-router.delete("/hello:id",pokemonControllers.borrar);
-
 router.put("/catch/:pokemon_id",pokemonStatusController.catchViewPokemonById);
 
-router.get("/catch/:pokemon_id",pokemonStatusController.viewPokemon);
+router.post("/view",pokemonStatusController.changeStatusPokemonByIdPokemon);
 
+// router.delete("/:id",pokemonControllers.borrar);/* PENDIENTE IMPLEMENTAR */
 
-export default  router;
-    
+export default  router;   

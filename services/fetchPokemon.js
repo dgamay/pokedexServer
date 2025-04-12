@@ -1,9 +1,7 @@
-const fectPokemon = async (pokemon_id,pokemonStatus) =>{
+const fetchPokemon = async (pokemon_id,pokemonStatus) =>{
     try {
         const response =await fetch(`https://pokeapi.co/api/v2/pokemon/${pokemon_id}`);
 
-        
-        
         if (response.status == 404){
             return 404;
         }
@@ -18,9 +16,7 @@ const fectPokemon = async (pokemon_id,pokemonStatus) =>{
         return pokemonData;
 
     } catch (error) {
-        return res.status(200).json(pokemon);
-        
+        return error     
     }
 }
-
-export default fectPokemon
+export default fetchPokemon
