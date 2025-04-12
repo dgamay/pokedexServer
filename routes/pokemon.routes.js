@@ -6,15 +6,17 @@ const router =express.Router()
 
 router.get("/hello/",pokemonControllers.hiTrainer); /* OOK */
 
-// router.post("/",pokemonControllers.crear);
+router.post("/",pokemonControllers.crear);  
 
-router.get("/",pokemonControllers.getPokemon);
+router.get("/",pokemonControllers.getPokemon);  /* OOK */
 
-router.get("/:pokemon_id",pokemonControllers.getPokemonByIdPokemon);
+router.get("/:pokemon_id",pokemonControllers.getPokemonByIdPokemon); /* OK */
 
-router.put("/catch/:pokemon_id",pokemonStatusController.catchViewPokemonById);
+router.put("/catch/:pokemon_id",pokemonStatusController.catchViewPokemonById); /* OK */
 
-router.post("/view",pokemonStatusController.changeStatusPokemonByIdPokemon);
+router.post("/view",pokemonStatusController.changeStatusPokemonByIdPokemon); /* OK */
+
+router.put("/team/:pokemon_id",pokemonStatusController.addPokemonInTeamById);
 
 // router.delete("/:id",pokemonControllers.borrar);/* PENDIENTE IMPLEMENTAR */
 
