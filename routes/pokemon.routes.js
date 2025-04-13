@@ -6,7 +6,7 @@ const router =express.Router()
 
 router.get("/hello/",pokemonControllers.hiTrainer); /* OOK */
 
-router.post("/",pokemonControllers.crear);  
+router.post("/",pokemonControllers.crear);  /* Actualmnte si fucion real */
 
 router.get("/",pokemonControllers.getPokemon);  /* OOK */
 

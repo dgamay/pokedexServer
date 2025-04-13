@@ -25,7 +25,6 @@ const changeStatusPokemonByIdPokemon = async (req, res) => {
 const catchViewPokemonById = async (req, res) => {
   try {
     const pokemon_id = req.params.pokemon_id;
-    
     const pokemonNew = {
       pokemon_id: pokemon_id,
       view: true,
@@ -55,20 +54,22 @@ const catchViewPokemonById = async (req, res) => {
 
 const addPokemonInTeamById = async (req, res) => {
   try {
+    let pokemon = new Pokemon(req.body);
+    console.log(pokemon);
+    const pokemonCatch = !pokemon.catch;
     const pokemon_id = req.params.pokemon_id;
-    const pokemonStatus= req.body.view
-    console.log(pokemonStatus);
+    console.log(`Poquemon con id ${pokemon_id} capturado: ${!pokemonCatch}`);
     const pokemonNew = {
       pokemon_id: pokemon_id,
       view: true,
       catch: true,
       in_team: true,
     };
-    let filter = { pokemon_id: pokemon_id };
-    let pokemon = await Pokemon.findOneAndReplace(filter, pokemonNew, {
+    let filter = { pokemon_id: pokemon_id, catch: pokemonCatch };
+    pokemon = await Pokemon.findOneAndReplace(filter, pokemonNew, {
       new: true,
     });
-
+    
     if (!pokemon) {
       return res.status(404).json({
         message: "Pokemon not catch yet",
@@ -82,7 +83,7 @@ const addPokemonInTeamById = async (req, res) => {
       data: pokemon,
     });
   } catch (error) {
-    res.status(500).json(` ${error.message}`);
+    res.status(500).json(`como seria ${error.message}`);
   }
 };
 

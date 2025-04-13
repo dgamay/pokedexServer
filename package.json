@@ -11,7 +11,7 @@
   "license": "MIT",
   "description": "Proyecto para consumir la pokeapi y guardar los datos en mongo",
   "dependencies": {
-    "dotenv": "^16.4.7",
+    "dotenv": "^16.5.0",
     "express": "^5.1.0",
     "mongoose": "^8.13.2"
   }
